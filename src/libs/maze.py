@@ -15,7 +15,6 @@ class Maze:
                 for j in range(self.columns):
                     self.maze[i,j] = line[j]
 
-        print(self.maze)
         self.build_rewards()
 
     def build_rewards(self):
@@ -32,5 +31,3 @@ class Maze:
                     self.rewards[i, j] = -10
                 else:
                     self.rewards[i, j] = 0
-
-        print(self.rewards)
