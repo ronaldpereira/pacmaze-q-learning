@@ -1,0 +1,1 @@
+python3 pacmaze.py ./input/input.txt 0.3 0.9 300
