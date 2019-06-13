@@ -1,4 +1,7 @@
 from sys import argv
-import libs.input_reader as IR
+import libs.maze as MZ
+import libs.q_learning as QL
 
-input_reader = IR.InputReader(argv[1])
+maze = MZ.Maze(argv[1])
+
+qlearning = QL.QLearning(argv[2], argv[3], argv[4])
