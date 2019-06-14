@@ -1,4 +1,5 @@
 from sys import argv
+
 import libs.maze as MZ
 import libs.q_learning as QL
 

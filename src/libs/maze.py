@@ -1,11 +1,12 @@
 import numpy as np
 
+
 class Maze:
     def __init__(self, input_path):
         self.read(input_path)
 
     def read(self, input_path):
-        with open(input_path, 'r') as input_file:
+        with open(input_path, "r") as input_file:
             self.lines, self.columns = input_file.readline().strip().split()
             self.lines, self.columns = int(self.lines), int(self.columns)
 
@@ -13,13 +14,13 @@ class Maze:
             for i in range(self.lines):
                 line = input_file.readline()
                 for j in range(self.columns):
-                    self.maze[i,j] = line[j]
+                    self.maze[i, j] = line[j]
 
         self.build_rewards()
 
     def build_rewards(self):
         self.rewards = np.zeros((self.lines, self.columns), dtype=np.int8)
-        
+
         for i in range(len(self.maze)):
             for j in range(len(self.maze[i])):
                 value = self.maze[i, j]
