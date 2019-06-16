@@ -21,8 +21,8 @@ class Maze:
     def build_rewards(self):
         self.rewards = np.zeros((self.lines, self.columns), dtype=np.int8)
 
-        for i in range(len(self.maze)):
-            for j in range(len(self.maze[i])):
+        for i in range(self.lines):
+            for j in range(self.columns):
                 value = self.maze[i, j]
                 if value == "-":
                     self.rewards[i, j] = -1

@@ -1,12 +1,15 @@
 from sys import argv
 
+import libs.arg_parse_config as APC
 import libs.maze as MZ
 import libs.q_learning as QL
 
-maze = MZ.Maze(argv[1])
+args = APC.parser()
 
-qlearning = QL.QLearning(argv[2], argv[3], argv[4], maze, (3, 1))
+maze = MZ.Maze(args.input_file)
 
-print(maze.maze)
-print(maze.rewards)
-print(qlearning.q)
+qlearning = QL.QLearning(
+    args.learning_rate, args.epsilon_greedy, args.n_iterations, maze
+)
+
+qlearning.update_q()

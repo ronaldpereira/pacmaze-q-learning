@@ -1,1 +1,1 @@
-python3 pacmaze.py ./input/input.txt 0.3 0.9 300
+python3 pacmaze.py $1 -l $2 -e $3 -n $4
