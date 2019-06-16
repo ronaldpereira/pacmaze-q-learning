@@ -22,10 +22,13 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -l LEARNING_RATE, --learning_rate LEARNING_RATE
-                        Learning Rate for Q-Learning. (Default:0.1)
+                        Learning Rate for Q-Learning. Must be greater than 0.
+                        (Default:0.1)
   -e EPSILON_GREEDY, --epsilon_greedy EPSILON_GREEDY
                         Epsilon Greedy for random actions. It will decrease by
-                        0.01 for each iteration made. (Default: 0.8)
+                        0.01 for each iteration made. Must be in interval [0,
+                        1] (Default: 0.8)
   -n N_ITERATIONS, --n_iterations N_ITERATIONS
-                        Number of Q-Learning iterations. (Default: 500)
+                        Number of Q-Learning iterations. Must be greater than
+                        0. (Default: 500)
 ```
