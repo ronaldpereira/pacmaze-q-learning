@@ -14,6 +14,7 @@ class QLearning:
         self.q = np.zeros(
             (len(self.actions), self.maze.lines, self.maze.columns), dtype=np.float64
         )
+        # Random initial position
         self.next_s = [0, 0]
         self.random_reposition()
         self.s = [self.next_s[0], self.next_s[1]]
@@ -57,24 +58,26 @@ class QLearning:
 
         print("Random reposition to", self.next_s)
 
-    def update_q(self):
+    def execute(self):
         for iteration in range(self.n):
             # Diminishes the value of epsilon_greedy by 0.01 for each iteration
             if self.epsilon - iteration * 0.01 > 0:
                 self.epsilon -= iteration * 0.01
 
+            # If random < e-greedy, then make random action
             if np.random.uniform() < self.epsilon:
                 action_index = np.random.randint(0, 4)
-                action = self.actions[action_index]
-
+            # If random >= e-greedy, then make max Q action
             else:
                 action_index = np.argmax(self.q[:, self.next_s[0], self.next_s[1]])
-                action = self.actions[action_index]
+            action = self.actions[action_index]
 
             self.move(action)
 
+            # R(s', a')
             next_reward = self.maze.rewards[self.next_s[0], self.next_s[1]]
 
+            # Q(s, a) = Q(s, a) + alpha [r + gamma(max(Q(s', a'))) - Q(s, a)]
             self.q[action_index, self.s[0], self.s[1]] += self.alpha * (
                 next_reward
                 + self.gamma
@@ -84,15 +87,17 @@ class QLearning:
                 )
             )
 
-            # Pellet or Phantom final state
+            # If Pellet or Phantom final state, then finish period and random reposition
             if (
                 self.maze.maze[self.next_s[0], self.next_s[1]] == "0"
                 or self.maze.maze[self.next_s[0], self.next_s[1]] == "&"
             ):
                 self.random_reposition()
 
+            # Updates the actual position marker
             self.s[0], self.s[1] = self.next_s[0], self.next_s[1]
 
+        # Prints the optimal policy pi* and the final Q values
         self.print_files()
 
     def print_files(self):
@@ -123,4 +128,3 @@ class QLearning:
 
                             q_file.write(output)
                             q_file.write("\n")
-
