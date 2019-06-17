@@ -44,13 +44,18 @@ class QLearning:
         print("to", self.next_s)
 
     def random_reposition(self):
+        if self.maze.maze[self.next_s[0], self.next_s[1]] == "0":
+            print("Found pellet!", end=" ")
+        else:
+            print("Found phantom!", end=" ")
+
         self.next_s[0] = 0
         self.next_s[1] = 0
         while self.maze.maze[self.next_s[0], self.next_s[1]] != "-":
             self.next_s[0] = np.random.randint(1, self.maze.maze.shape[0] - 1)
             self.next_s[1] = np.random.randint(1, self.maze.maze.shape[1] - 1)
 
-        print("random reposition to", self.next_s)
+        print("Random reposition to", self.next_s)
 
     def update_q(self):
         for iteration in range(self.n):
