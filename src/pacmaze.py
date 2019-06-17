@@ -12,4 +12,4 @@ qlearning = QL.QLearning(
     args.learning_rate, args.epsilon_greedy, args.n_iterations, maze
 )
 
-qlearning.update_q()
+qlearning.execute()
