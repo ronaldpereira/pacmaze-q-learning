@@ -97,8 +97,8 @@ class QLearning:
             # Updates the actual position marker
             self.s[0], self.s[1] = self.next_s[0], self.next_s[1]
 
-    def print_files(self, pi_file, q_file):
-        with open("pi.txt", "w") as pi_file:
+    def print_files(self, pi_file_path, q_file_path):
+        with open(pi_file_path, "w") as pi_file:
             for i in range(self.maze.lines):
                 for j in range(self.maze.columns):
                     if self.maze.maze[i, j] == "-":
@@ -108,7 +108,7 @@ class QLearning:
                         pi_file.write(self.maze.maze[i, j])
                 pi_file.write("\n")
 
-        with open("q.txt", "w") as q_file:
+        with open(q_file_path, "w") as q_file:
             for i in range(self.q.shape[0]):
                 for j in range(self.q.shape[1]):
                     if self.maze.maze[i, j] == "-":
