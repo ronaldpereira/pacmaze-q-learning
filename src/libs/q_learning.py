@@ -97,10 +97,7 @@ class QLearning:
             # Updates the actual position marker
             self.s[0], self.s[1] = self.next_s[0], self.next_s[1]
 
-        # Prints the optimal policy pi* and the final Q values
-        self.print_files()
-
-    def print_files(self):
+    def print_files(self, pi_file, q_file):
         with open("pi.txt", "w") as pi_file:
             for i in range(self.maze.lines):
                 for j in range(self.maze.columns):
